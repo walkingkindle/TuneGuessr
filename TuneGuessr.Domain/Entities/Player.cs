@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TuneGuessr.Domain.Entities
+﻿namespace TuneGuessr.Domain.Entities
 {
-    internal class Player
+    public class Player
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public int SpotifyId { get; set; }
+
+        public List<Playlist> PlayLists { get; set; }
     }
 }
