@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TuneGuessr.Application.Contracts.Auth;
 using TuneGuessr.Application.Contracts.Persistence;
@@ -11,8 +12,10 @@ namespace TuneGuessr.Infrastructure
     public static class InfrastructureServiceRegistration
     {
 
-        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
+        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddDbContext<TuneGuessrDbContext>(options =>
+            options.UseSqlServer(configuration.GetConnectionString("TuneGuessrConnectionString")));
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 
             services.AddScoped<IPlayerRepository, PlayerRepository>();

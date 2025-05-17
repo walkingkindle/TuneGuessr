@@ -1,6 +1,9 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using TuneGuessr.API;
 
-app.MapGet("/", () => "Hello World!");
+var builder = WebApplication.CreateBuilder(args);
+
+var app = StartupExtensions.ConfigureServices(builder);
+
+StartupExtensions.ConfigurePipeline(app,builder.Environment);
 
 app.Run();

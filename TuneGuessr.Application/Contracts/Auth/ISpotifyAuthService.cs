@@ -2,6 +2,6 @@
 {
     public interface ISpotifyAuthService
     {
-        public Task Authenticate();
+        public string GetAuthorizationURL();
     }
 }
